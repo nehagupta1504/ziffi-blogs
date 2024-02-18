@@ -7,6 +7,7 @@ import restProvider from "@/lib/restProvider";
 import { apiUrls } from "../utils/constants";
 import { NextApiRequest, NextApiResponse } from "next";
 import { useEffect, useState } from "react";
+import loader from "../../public/loader.gif";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,9 @@ export default function Home() {
   },[])
   useEffect(() => {
     if (data) {
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      },500);
     }
   }, [data]);
 
@@ -35,8 +38,7 @@ export default function Home() {
           {loading ? (
             <div className={styles["empty-container"]}>
               <div className={styles["empty-container"]}>
-                <p>There are no posts to render</p>
-                <Link href='/addblog'>Create a post now</Link>
+                <p>Loading...</p>
               </div>
             </div>
           ) : (

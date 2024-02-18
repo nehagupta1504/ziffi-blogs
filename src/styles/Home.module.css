@@ -6,6 +6,10 @@
   width: 100%;
   flex-direction: column;
 }
+.empty-container p{
+  color:#0056b3;
+  font-size: 1.5rem;
+}
 .blog-container {
   display: flex;
   align-items: center;
