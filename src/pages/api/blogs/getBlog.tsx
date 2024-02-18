@@ -3,6 +3,7 @@ import { sql } from "@vercel/postgres";
 
 export default async function handler (req: NextApiRequest, res: NextApiResponse): Promise<void> {
   try {
+    console.log("executing--- api", req.query.id)
     if (req.method !== "GET") {
       res.status(405).json({ error: "Method not allowed" });
       return;
@@ -10,13 +11,12 @@ export default async function handler (req: NextApiRequest, res: NextApiResponse
     // Check for authorisation here
     // TODO: authroisationMiddleware(req, res);
     // Add the blog to the database
-    const result = await sql`SELECT * FROM blogs`;
+    const result = await sql`SELECT * FROM blogs where id = ${String(req.query.id)}`;
     // Send the blog as a response
-     return res.status(201).json(result.rows);
+    res.status(201).json(result.rows );
   } catch (error: any) {
     console.error("Error fetching blog: ", error.message);
-     res.status(500).json({ error: "Error fetching blog", message: error.message });
-     return;
+    res.status(500).json({ error: "Error fetching blog", message: error.message });
   }
 };
 
