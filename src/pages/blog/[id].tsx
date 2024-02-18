@@ -14,7 +14,6 @@ const inter = Inter({ subsets: ["latin"] });
 export default function BlogDetail(props: any) {
   const router = useRouter();
   const { id } = router.query;
-  console.log("id", id);
   const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<any>(null);
   useEffect(() => {
@@ -24,7 +23,6 @@ export default function BlogDetail(props: any) {
     });
   }, [id]);
   useEffect(() => {
-    console.log("Data", data);
     if (data) {
       setLoading(false);
     }
@@ -53,8 +51,6 @@ export default function BlogDetail(props: any) {
 }
 
 async function fetchData(id: string) {
-  console.log("id----", id);
   const data = await restProvider.get(`${apiUrls.getblog}?id=${id}`);
-  console.log("data", data);
   return data;
 }

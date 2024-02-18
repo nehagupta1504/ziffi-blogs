@@ -69,6 +69,5 @@ export default function Home() {
 
 async function fetchData() {
   const data = await restProvider.get(apiUrls.getBlogs);
-  console.log("data", data);
   return data;
 }

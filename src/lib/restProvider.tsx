@@ -19,7 +19,6 @@ const restProvider = {
 };
 
  async function get(url: string, headerOptions?: IHeaderOptions): Promise<any> {
-  console.log("url", url)
   return await axiosClient.get(url, headerOptions).then(handleResponse).catch(handleError);
 }
 
@@ -33,7 +32,6 @@ function post(url: string, body: any, header?: IHeaderOptions): Promise<any> {
 
 
 function handleResponse(response: AxiosResponse) {
-  console.log("response", response);
   return response.data;
 }
 

@@ -3,7 +3,6 @@ import { sql } from "@vercel/postgres";
 
 export default async function handler (req: NextApiRequest, res: NextApiResponse): Promise<void> {
   try {
-    console.log("executing--- api", req.query.id)
     if (req.method !== "GET") {
       res.status(405).json({ error: "Method not allowed" });
       return;
