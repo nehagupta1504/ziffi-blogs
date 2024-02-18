@@ -9,7 +9,7 @@ const Header = () => {
         <Link className={styles["logo-img"]} href="/">ZiffyB.</Link>
       </div>
       <div className={styles["header-options"]}>
-        <Link className={styles['add-blog-link']} href="/addblog">Add Blog</Link>
+        <Link className={styles['add-blog-link']} href="/blog/addblog">Add Blog</Link>
       </div>
     </header>
   );

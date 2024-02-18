@@ -1,5 +1,5 @@
 export const apiUrls = {
-    postBlog:'/api/blog',
+    postBlog:'/api/blogs/postBlog',
     getBlogs:'/api/blogs/getBlogs',
     getblog:'/api/blogs/getBlog',
 }

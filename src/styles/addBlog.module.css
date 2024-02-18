@@ -1,0 +1,38 @@
+
+
+.add-blog h1 {
+  text-align: center;
+}
+
+.blog-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.submit-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
