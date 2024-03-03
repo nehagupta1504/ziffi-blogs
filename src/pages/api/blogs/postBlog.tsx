@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { sql } from "@vercel/postgres";
+import { postBlogService } from "@/services/blogs.services";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
   try {
@@ -17,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Check for authorisation here
     // TODO: authroisationMiddleware(req, res);
     // Add the blog to the database
-    const result = await sql`INSERT INTO blogs (title, author, content, created_at) VALUES (${title}, ${author}, ${content}, ${createdAt}) RETURNING *`;
+    const result = await postBlogService(title, author, content, createdAt);
     // Send the blog as a response
     res.status(201).json({ blog: result.rows[0] });
   } catch (error) {

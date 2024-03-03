@@ -1,8 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { sql } from "@vercel/postgres";
+import { getBlogsService } from "@/services/blogs.services";
 import redisClient from "@/services/redis";
+import { sql } from "@vercel/postgres";
 
-export default async function handler (req: NextApiRequest, res: NextApiResponse): Promise<void> {
+export default async function handler (req: NextApiRequest, res: NextApiResponse ): Promise<void> {
   try {
     if (req.method !== "GET") {
       res.status(405).json({ error: "Method not allowed" });
@@ -18,7 +19,7 @@ export default async function handler (req: NextApiRequest, res: NextApiResponse
       return res.status(201).json(redisValue);
     }else{
       console.log("not getting redis value need to get from db", redisValue);
-      const result = await sql`SELECT * FROM blogs`;
+      const result = await getBlogsService();
       redisClient.set(redisKey, JSON.stringify(result.rows), {"ex": 60});
       // Send the blog as a response
       return res.status(201).json(result.rows);
