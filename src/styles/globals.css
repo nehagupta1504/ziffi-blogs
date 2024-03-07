@@ -60,6 +60,18 @@ body, h1,h2,h3,h4,h5,h6,p,ul,ol,li,figure,figcaption,blockquote,dl,dd{
 .icon-delete{
   background: url('../../public/imgs/delete-icon.svg') no-repeat;
 }
+.icon-write{
+  background: url('/imgs/write.svg') no-repeat;
+
+}
+.icon-bell{
+  background: url('/imgs/notification.svg') no-repeat;
+}
+.icon-user{
+  background: url('/imgs/user-avatar.svg') no-repeat;
+  width: 30px;
+  height: 30px;
+}
 /* CSS for overlays */
 #overlay {
   position: fixed; /* Sit on top of the page content */
