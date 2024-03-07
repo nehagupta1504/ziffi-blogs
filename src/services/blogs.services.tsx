@@ -10,5 +10,5 @@ export const postBlogService = async (title: string, author: string, content: st
     return await sql`INSERT INTO blogs (title, author, content, created_at) VALUES (${title}, ${author}, ${content}, ${createdAt}) RETURNING *`;
 }
 export const deleteBlogService = async (id: string)=>{
-    // return await sql `DELETE FROM blogs WHERE id = ${id}`;
+    return await sql `DELETE FROM blogs WHERE id = ${id}`;
 }

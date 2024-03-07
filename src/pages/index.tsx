@@ -18,8 +18,7 @@ export default function Home({ blogs }: { readonly blogs: IBlog[] }) {
     let blogId = (e.target as HTMLButtonElement).id;
     blogId = blogId.split("_")[1];
     await restProvider.delete(`/api/blogs/deleteBlog/${blogId}`);
-    const updatedBlogs = blogData.filter((blog: any) => blog.id !== blogId);
-    console.log(updatedBlogs, "updatedBlogs")
+    const updatedBlogs = blogData.filter((blog: any) => blog.id.toString() !== blogId.toString());
     setBlogData(updatedBlogs);
   }
 

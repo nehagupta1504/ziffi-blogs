@@ -31,7 +31,6 @@ function post(url: string, body: any, header?: IHeaderOptions): Promise<any> {
   return axiosClient.post(url, JSON.stringify(body), { headers }).then(handleResponse).catch(handleError);
 }
 async function _delete(url: string, headerOptions?: IHeaderOptions): Promise<any> {
-  console.log(url, headerOptions)
   let data;
   const requestOptions = {};
   data = axiosClient.delete(url, requestOptions).then(handleResponse).catch(handleError);
