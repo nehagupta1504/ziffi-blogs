@@ -16,6 +16,7 @@ const axiosClient = axios.create({
 const restProvider = {
   get,
   post,
+  delete:_delete
 };
 
  async function get(url: string, headerOptions?: IHeaderOptions): Promise<any> {
@@ -28,6 +29,13 @@ function post(url: string, body: any, header?: IHeaderOptions): Promise<any> {
     "Content-Type": "application/json",
   };
   return axiosClient.post(url, JSON.stringify(body), { headers }).then(handleResponse).catch(handleError);
+}
+async function _delete(url: string, headerOptions?: IHeaderOptions): Promise<any> {
+  console.log(url, headerOptions)
+  let data;
+  const requestOptions = {};
+  data = axiosClient.delete(url, requestOptions).then(handleResponse).catch(handleError);
+  return data;
 }
 
 

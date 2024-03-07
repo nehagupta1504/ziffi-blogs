@@ -70,8 +70,3 @@ export default function BlogDetail(props: any) {
     </>
   );
 }
-
-async function fetchData(id: string) {
-  const data = await restProvider.get(`${apiUrls.getblog}?id=${id}`);
-  return data;
-}

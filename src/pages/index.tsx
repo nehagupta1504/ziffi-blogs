@@ -2,14 +2,27 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { getBlogsService } from "@/services/blogs.services";
+import { getBlogsService, deleteBlogService } from "@/services/blogs.services";
 import { IBlog } from "@/interfaces/blogs.interface";
 import { NextApiRequest, NextApiResponse } from "next";
+import { renderPartialText } from "@/utils/helper";
+import restProvider from "@/lib/restProvider";
+import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home({ blogs }: { blogs: IBlog[] }) {
+export default function Home({ blogs }: { readonly blogs: IBlog[] }) {
+  const [blogData, setBlogData] = useState(blogs);
+
+  const deleteBlog = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    let blogId = (e.target as HTMLButtonElement).id;
+    blogId = blogId.split("_")[1];
+    await restProvider.delete(`/api/blogs/deleteBlog/${blogId}`);
+    const updatedBlogs = blogData.filter((blog: any) => blog.id !== blogId);
+    console.log(updatedBlogs, "updatedBlogs")
+    setBlogData(updatedBlogs);
+  }
+
   return (
     <>
       <Head>
@@ -18,25 +31,32 @@ export default function Home({ blogs }: { blogs: IBlog[] }) {
       <main className={styles["blog-container"]}>
         <h1 className={styles["page-heading"]}>Welcome to Ziffi Blogs</h1>
         <div className={styles["data-container"]}>
-          {blogs?.map((blog: any) => (
-            <div key={blog.id} className={styles["blog-card"]}>
-              <div className={styles["card-title"]}>
-                <h2>{blog.title}</h2>
-                <p>By: {blog.author}</p>
+          {blogData?.map((blog: any) => {
+            const { id, content, title, author } = blog;
+            return (
+              <div key={id} className={styles["blog-card"]}>
+                <div className={styles["card-heading"]}>
+                  <div className={styles["card-title"]}>
+                    <h2>{title}</h2>
+                    <p>By: {author}</p>
+                  </div>
+                  <div className={styles["user-options"]}>
+                    <button onClick={deleteBlog} id={`delete_${id}`} name="">
+                      <span className='icon icon-delete' id={`span_${id}`}></span>
+                    </button>
+                  </div>
+                </div>
+                <div className={styles["card-content"]}>
+                  <p>{renderPartialText(content, 40, "...")}</p>
+                  {content.split(" ").length > 40 && (
+                    <Link href={`/blog/${id}`} className={styles["read-more-link"]} target='_blank'>
+                      Read More
+                    </Link>
+                  )}
+                </div>
               </div>
-              <div className={styles["card-content"]}>
-                <p>
-                  {blog.content.split(" ").slice(0, 40).join(" ")}
-                  {blog.content.split(" ").length > 40 ? "..." : ""}
-                </p>
-                {blog.content.split(" ").length > 40 && (
-                  <Link href={`/blog/${blog.id}`} className={styles["read-more-link"]} target='_blank'>
-                    Read More
-                  </Link>
-                )}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </main>
     </>

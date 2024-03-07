@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { sql } from "@vercel/postgres";
 import { postBlogService } from "@/services/blogs.services";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {

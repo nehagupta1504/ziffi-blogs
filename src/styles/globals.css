@@ -50,3 +50,13 @@ body, h1,h2,h3,h4,h5,h6,p,ul,ol,li,figure,figcaption,blockquote,dl,dd{
 .content-container{
   padding-top:80px;
 }
+
+.icon{
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+}
+
+.icon-delete{
+  background: url('../../public/imgs/delete-icon.svg') no-repeat;
+}
