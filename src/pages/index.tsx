@@ -8,25 +8,35 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { renderPartialText } from "@/utils/helper";
 import restProvider from "@/lib/restProvider";
 import { useState } from "react";
+import { onOverlay, offOverlay } from "@/utils/styleHelpers";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({ blogs }: { readonly blogs: IBlog[] }) {
   const [blogData, setBlogData] = useState(blogs);
+  const [loading, setLoading] = useState(false);
 
   const deleteBlog = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    onOverlay(document);
+    setLoading(true);
     let blogId = (e.target as HTMLButtonElement).id;
     blogId = blogId.split("_")[1];
     await restProvider.delete(`/api/blogs/deleteBlog/${blogId}`);
     const updatedBlogs = blogData.filter((blog: any) => blog.id.toString() !== blogId.toString());
     setBlogData(updatedBlogs);
-  }
-
+    setLoading(false);
+    offOverlay(document);
+  };
   return (
     <>
       <Head>
         <title>Ziffi-Blogs</title>
       </Head>
+      <div id='overlay' className={styles.overlay}>
+        <div className="overlay-content">
+          <i className={`fa fa-spinner fa-spin ${styles["spinner"]}`}></i>
+        </div>
+      </div>
       <main className={styles["blog-container"]}>
         <h1 className={styles["page-heading"]}>Welcome to Ziffi Blogs</h1>
         <div className={styles["data-container"]}>
@@ -40,7 +50,7 @@ export default function Home({ blogs }: { readonly blogs: IBlog[] }) {
                     <p>By: {author}</p>
                   </div>
                   <div className={styles["user-options"]}>
-                    <button onClick={deleteBlog} id={`delete_${id}`} name="">
+                    <button onClick={deleteBlog} id={`delete_${id}`} name=''>
                       <span className='icon icon-delete' id={`span_${id}`}></span>
                     </button>
                   </div>
