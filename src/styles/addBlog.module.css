@@ -1,9 +1,35 @@
 
-
+.add-blog{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding:0px 20px;
+  box-sizing: border-box;
+}
 .add-blog h1 {
   text-align: center;
+  margin-bottom: 20px;
 }
+.add-blog-container{
+  display: flex;
+  height: calc(100% - 66px);
+}
+.editor, .view-post{
+  flex: 1;
+  margin: 0 10px;
+  height: 98%;
+}
+.view-post{
+    border:2px solid #eee;
+    border-radius: 10px;
 
+}
+.view-post h2{
+  text-align: center;
+  margin: 10px 0;
+  border-bottom: 2px solid #eee;
+}
 .blog-form {
   max-width: 600px;
   margin: 0 auto;
