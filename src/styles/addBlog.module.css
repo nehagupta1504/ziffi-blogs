@@ -13,8 +13,9 @@
 }
 .add-blog-container{
   display: flex;
-  height: calc(100% - 66px);
+  height: 85%;
 }
+
 .editor, .view-post{
   flex: 1;
   margin: 0 10px;
@@ -23,12 +24,27 @@
 .view-post{
     border:2px solid #eee;
     border-radius: 10px;
-
 }
 .view-post h2{
   text-align: center;
   margin: 10px 0;
   border-bottom: 2px solid #eee;
+}
+.add-blog__title{
+  height: 15%;
+  padding:20px;
+}
+.add-blog__title__input{
+  border: none;
+  width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.add-blog__title__input{
+  font-size: 2rem;
+}
+.add-blog__title__input:focus{
+  outline: none;
 }
 .blog-form {
   max-width: 600px;
