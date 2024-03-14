@@ -30,13 +30,19 @@
   margin: 10px 0;
   border-bottom: 2px solid #eee;
 }
-.add-blog__title{
-  height: 15%;
+.add-blog-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding:20px;
+  height: 15%;
+}
+.add-blog__title{
+  width: 50%;
 }
 .add-blog__title__input{
   border: none;
-  width: 50%;
+  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
 }

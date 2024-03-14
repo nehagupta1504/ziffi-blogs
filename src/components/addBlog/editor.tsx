@@ -5,8 +5,7 @@ import { IBlog, Post } from '@/interfaces/blogs.interface';
 
 // Todo change props type to actual type
 export default function PostEditor(props:any) {
-    console.log(props);
-    const {handleChange} = props;
+    const {handleChange, content} = props;
   const editorRef = useRef<TinyMCEEditor | null>(null);
   const log = () => {
     if (editorRef.current) {
