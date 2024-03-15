@@ -56,7 +56,7 @@ export default function Home({ blogs }: { readonly blogs: IBlog[] }) {
                   </div>
                 </div>
                 <div className={styles["card-content"]}>
-                  <p>{renderPartialText(content, 40, "...")}</p>
+                  <div dangerouslySetInnerHTML={{__html:renderPartialText(content.toString(), 40, "...")}}></div>
                   {content.split(" ").length > 40 && (
                     <Link href={`/blog/${id}`} className={styles["read-more-link"]} target='_blank'>
                       Read More

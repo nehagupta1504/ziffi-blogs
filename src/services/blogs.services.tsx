@@ -2,7 +2,7 @@ import { createClient, sql } from "@vercel/postgres";
 
 export const getBlogsService = async () => {
   try {
-    return await sql`SELECT * FROM blogs`;
+    return await sql`SELECT * FROM blogs ORDER BY created_at DESC`;
   } catch (err) {
     console.log("err", err);
     throw err;
