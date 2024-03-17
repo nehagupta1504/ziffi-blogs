@@ -33,7 +33,7 @@ export default function Home({ blogs }: { readonly blogs: IBlog[] }) {
         <title>Ziffi-Blogs</title>
       </Head>
       <div id='overlay' className={styles.overlay}>
-        <div className="overlay-content">
+        <div className='overlay-content'>
           <i className={`fa fa-spinner fa-spin ${styles["spinner"]}`}></i>
         </div>
       </div>
@@ -50,18 +50,23 @@ export default function Home({ blogs }: { readonly blogs: IBlog[] }) {
                     <p>By: {author}</p>
                   </div>
                   <div className={styles["user-options"]}>
-                    <button onClick={deleteBlog} id={`delete_${id}`} name=''>
-                      <span className='icon icon-delete' id={`span_${id}`}></span>
-                    </button>
+                    <div>
+                      <button onClick={deleteBlog} id={`delete_${id}`} name=''>
+                        <span className='icon icon-delete' id={`span_${id}`}></span>
+                      </button>
+                    </div>
+                    <div>
+                      <Link href={`/blog/${id}`} className={styles["read-more-link"]} target='_blank'>
+                        <span className='icon icon-new-tab'></span>
+                      </Link>
+                    </div>
                   </div>
                 </div>
                 <div className={styles["card-content"]}>
-                  <div dangerouslySetInnerHTML={{__html:renderPartialText(content.toString(), 40, "...")}}></div>
-                  {content.split(" ").length > 40 && (
-                    <Link href={`/blog/${id}`} className={styles["read-more-link"]} target='_blank'>
-                      Read More
-                    </Link>
-                  )}
+                  <div dangerouslySetInnerHTML={{ __html: renderPartialText(content.toString(), 3, "...") }}></div>
+                  {/* <Link href={`/blog/${id}`} className={styles["read-more-link"]} target='_blank'>
+                      Open
+                    </Link> */}
                 </div>
               </div>
             );

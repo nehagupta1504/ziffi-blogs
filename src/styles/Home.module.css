@@ -33,7 +33,7 @@
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  height: 180px;
+ min-height: min-content;
 }
 .card-heading{
   display: flex;
@@ -71,12 +71,24 @@
   text-overflow: ellipsis;
   width: 88%;
 }
-.read-more-link {
-  font-size: 0.7rem;
+/* .read-more-link {
+  font-size: 1rem;
   font-weight: bold;
-  margin-top: 5px;
-}
+  margin-top: 10px;
+  text-decoration: none;
+  color:#0056b3 ;
+} */
 
 .spinner{
   font-size: 60px !important;
+}
+/* Left button options on dashboard */
+.user-options{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user-options button{
+  border: none;
+  background: none;
 }
