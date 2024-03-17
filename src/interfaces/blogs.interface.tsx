@@ -5,3 +5,9 @@ export interface IBlog{
     author:string,
     created_at:string 
 }
+
+export interface Post {
+  title: string;
+  author: string;
+  content: string;
+}

@@ -17,7 +17,7 @@ const Header = () => {
             <span className={styles["header-item"]}>Write</span>
           </div>
         </Link>
-        <Link className={styles["notification"]} href='/notication'>
+        <Link className={styles["notification"]} href='/notification'>
           <div className={styles["header-option"]}>
             <span className='icon icon-bell'></span>
           </div>

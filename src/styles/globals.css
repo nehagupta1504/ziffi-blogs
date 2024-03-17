@@ -49,6 +49,14 @@ body, h1,h2,h3,h4,h5,h6,p,ul,ol,li,figure,figcaption,blockquote,dl,dd{
 }
 .content-container{
   padding-top:80px;
+  height: calc(100vh - 80px);
+}
+.dummy-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }
 
 .icon{
@@ -71,6 +79,12 @@ body, h1,h2,h3,h4,h5,h6,p,ul,ol,li,figure,figcaption,blockquote,dl,dd{
   background: url('/imgs/user-avatar.svg') no-repeat;
   width: 30px;
   height: 30px;
+}
+.icon-new-tab{
+  background: url('/imgs/new-tab.svg') no-repeat;
+  width: 20px;
+  height: 20px;
+
 }
 /* CSS for overlays */
 #overlay {
