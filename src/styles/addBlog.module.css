@@ -24,6 +24,7 @@
 .view-post{
     border:2px solid #eee;
     border-radius: 10px;
+    overflow: hidden;
 }
 .view-post h2{
   text-align: center;
@@ -88,4 +89,10 @@
 .submit-button:disabled{
   background-color: #cccccc;
   cursor: not-allowed;
+}
+
+@media screen and (max-width: 768px) {
+  .view-post{
+    display:none;
+  }
 }

@@ -22,7 +22,9 @@ export default function BlogDetail({ blog }: { readonly blog: IBlog }) {
             <p>By: {author}</p>
           </div>
           <div className={styles["content-details"]}>
-            <p>{content}</p>
+            <div className={styles["content-wrapper"]}>
+              <div dangerouslySetInnerHTML={{__html:content}}></div>
+            </div>
           </div>
         </div>
       </main>

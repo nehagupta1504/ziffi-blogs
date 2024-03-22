@@ -8,6 +8,7 @@ import PostEditor from "@/components/addBlog/editor";
 import { Post } from "@/interfaces/blogs.interface";
 import Draft from "@/components/addBlog/draft";
 import { useRouter } from "next/router";
+import { onOverlay, offOverlay } from "@/utils/styleHelpers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,7 @@ export default function BlogDetail(props: any) {
   };
   const [post, setPost] = useState<Post>(initialState);
   const { title, author, content } = post;
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const router = useRouter();
   useEffect(() => {
@@ -29,7 +30,7 @@ export default function BlogDetail(props: any) {
       setButtonDisabled(true);
     }
   });
-
+  setTimeout(() => setLoading(false), 3000);
   // function to handle input change
   const handleChange = (key: string, value: string) => {
     setPost({
@@ -53,15 +54,15 @@ export default function BlogDetail(props: any) {
       alert("Error adding blog");
     }
   };
-
   return (
     <>
       <Head>
         <title>Ziffi-Blogs</title>
       </Head>
+
       <main className={styles["add-blog"]}>
         {/* Add Blog header */}
-        <div className={styles['add-blog-header']}>
+        <div className={styles["add-blog-header"]}>
           <div className={styles["add-blog__title"]}>
             <input
               className={styles["add-blog__title__input"]}
@@ -71,13 +72,9 @@ export default function BlogDetail(props: any) {
               }}
             ></input>
           </div>
-          <div className="add-blog__actions">
-            <button
-              className={`${styles["add-blog__actions__button"]} ${styles["submit-button"]}`}
-              disabled={buttonDisabled}
-              onClick={addPost}
-            >
-               {loading ? <i className='fa fa-spinner fa-spin'></i> : "Submit"}
+          <div className='add-blog__actions'>
+            <button className={`${styles["add-blog__actions__button"]} ${styles["submit-button"]}`} disabled={buttonDisabled} onClick={addPost}>
+              {loading ? <i className='fa fa-spinner fa-spin'></i> : "Submit"}
             </button>
           </div>
         </div>
